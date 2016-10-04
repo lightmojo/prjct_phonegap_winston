@@ -78,7 +78,6 @@
                 dataType: "json",
                 jsonp: "callback",
                 data: "submenu="+sub,
-                method: "POST",
                 error: function(e) {
                   alert('Error: ' + e.message);
                 },
@@ -102,12 +101,10 @@
     <script type="text/javascript">
       document.addEventListener("deviceready", onDeviceReady, false);
           function onDeviceReady() {
-              alert('device ready, height :'+screen.height+' and width :'+screen.width);
               document.addEventListener("backbutton", function (e) {
                   e.preventDefault();
               }, false );
       }
-      alert('height :'+screen.height+' and width :'+screen.width);
     </script>
 </html>
 
