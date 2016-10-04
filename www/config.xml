@@ -1,5 +1,5 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.winston.product" version="1.0.0">
-  <name>winston</name>
+  <name>WINSTON</name>
   <description>APK For Winston Best HPL.</description>
   <author href="hhttp://winston-best-hpl.com/" email="admin@winston-best-hpl.com">Winston Team</author>
   <content src="index.html"/>
