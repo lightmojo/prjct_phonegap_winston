@@ -70,6 +70,7 @@
       }
 
       $(document).ready(function(){
+        $.support.cors=true;
         var sub = getParameterByName('sub');
         var urls = "http://kodokijo.net/projects/winston/api/submenu.php";
         $.ajax({
