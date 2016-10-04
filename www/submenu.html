@@ -79,8 +79,8 @@
                 jsonp: "callback",
                 data: "submenu="+sub,
                 method: "POST",
-                error: function (request, status, error) {
-                  alert(request.responseText);
+                error: function(e) {
+                  alert('Error: ' + e.message);
                 },
                 success: function( data ) {
                   if(data.header!=="")
