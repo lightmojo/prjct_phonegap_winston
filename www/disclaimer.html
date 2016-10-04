@@ -54,5 +54,13 @@ Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 
 
     <script src="js/ionic.bundle.js"></script>
+    <script type="text/javascript">
+      document.addEventListener("deviceready", onDeviceReady, false);
+          function onDeviceReady() {
+              document.addEventListener("backbutton", function (e) {
+                  e.preventDefault();
+              }, false );
+      }
+    </script>
 </html>
 
