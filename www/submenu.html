@@ -71,14 +71,16 @@
 
       $(document).ready(function(){
         var sub = getParameterByName('sub');
+        var urls = "http://kodokijo.net/projects/winston/api/submenu.php";
+        alert('call '+urls);
         $.ajax({
-                url: "http://kodokijo.net/projects/winston/api/submenu.php",
+                url: urls,
                 dataType: "json",
-                crossDomain: true,
+                jsonp: "callback",
                 data: "submenu="+sub,
                 method: "POST",
-                error:function(){
-                  alert("connection close");
+                error: function (request, status, error) {
+                  alert(request.responseText);
                 },
                 success: function( data ) {
                   if(data.header!=="")
