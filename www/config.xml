@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.winston.product" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>WINSTON</name>
-    <description>Hello World sample application that responds to the deviceready event.</description>
+    <description>Winston-Best HPL Product List Application.</description>
     <author email="admin@winston-best-hpl.com" href="http://winston-best-hpl.com/">Winston Team</author>
     <content src="index.html" />
     <icon src="icon.png" />
