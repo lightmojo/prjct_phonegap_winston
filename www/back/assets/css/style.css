@@ -1,0 +1,58 @@
+html,
+body {
+    height: 100%;
+
+}
+
+.header{
+    min-height: 10%;
+    max-height: 10%;
+    background-image: url('../image/header_bg.png');
+}
+.logo{
+    margin-top: 5%;
+}
+.subheader{
+    min-height: 10%;
+    max-height: 10%;
+    background-image: url('../image/sub_menu_bg.png');
+}
+.submenu{
+    padding-top: 4%;
+}
+.back-arrow{
+    max-height: 20px;
+    padding-right: 10px;
+    float: left;
+}
+.submenu-text{
+    color: #2e3192;
+    font-weight: bold;
+}
+
+.main-body{
+    min-height: 70%;
+    max-height: 70%;
+    background-color: #eeeeee;
+    overflow: auto;
+    max-height: 335px;
+    font-size: 10px;
+}
+.menu-button{
+    margin-top: 5%;
+    max-height: 80px;
+}
+.menu-text{
+    font-size: 10px;
+    color: #3d1c24;
+    font-weight: bold;
+}
+.footer{
+    min-height: 10%;
+    max-height: 10%;
+    background-image: url('../image/footer_bg.png');
+}
+.footer-icon{
+    align:center;
+    margin-top:2%;
+}

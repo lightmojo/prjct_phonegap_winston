@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <link href="css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
+    <!-- <script src="cordova.js"></script> -->
+  </head>
+  <body>
+    <div class="bar bar-header header">
+        <div class="col col-25 col-center text-center"><img src="image/winston_logo.png" class="img-responsive"></div>
+        <div class="col col-50 col-center text-center"></div>
+        <div class="col col-25 col-center text-center"><img src="image/ok.png" class="img-responsive"></div>
+    </div>
+    <a href="#" class="back">
+    <div class="bar bar-subheader subheader-title">
+        <div class="col col-10 subheader-row col-center"><img src="image/back_arrow.png" class="back-arrow"></div>
+        <div class="col col-10 subheader-row col-center"><img src="image/best_small_ic.png" class="subheader-img"></div>
+        <div class="col col-80 subheader-row col-center subheader-text">BEST HPL</div>
+    </div>
+    </a>
+    <div class="content has-subheader">
+      <center>
+      <button class="button">
+        <i class="icon ion-loading-c"></i> Loading...
+      </button>
+      </center>
+      </div>
+    </div>
+    <div class="bar bar-footer">
+      <div class="col col-25">
+        <center>
+        <a href="index.html"><img src="image/home_35x35.png" class="img-responsive" /></a>
+        </center>
+      </div>
+      <div class="col col-25">
+        <center>
+        <a href="disclaimer.html"><img src="image/disclaimer_35x35.png" class="img-responsive" /></a>
+        </center>
+      </div>
+      <div class="col col-25">
+        <center>
+        <a href="about_us.html"><img src="image/about_us_35x35.png" class="img-responsive" /></a>
+        </center>
+      </div>
+      <div class="col col-25">
+        <center>
+        <a href="contact_us.html"><img src="image/contact_35x35.png" class="img-responsive" /></a>
+        </center>
+      </div>
+    </div>
+  </body>
+
+
+    <script src="js/ionic.bundle.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      $(document).ready(function(){
+        var sub = getParameterByName('sub');
+        var menudetail = getParameterByName('menudetail');
+        var product = getParameterByName('product');
+        $('.back').attr('href','http://kodokijo.net/projects/winston/api/productdetail.php?sub='+sub+'&menudetail='+menudetail);
+        $.ajax({
+                url: "api/productdetail.php",
+                dataType: "json",
+                data: "submenu="+sub+"&menudetail="+menudetail+"&product="+product,
+                method: "POST",
+                error:function(){
+                  alert("connection close");
+                },
+                success: function( data ) {
+                  if(data.header!=="")
+                  {
+                    $(".subheader-text").html(data.header['nama']);
+                    $(".subheader-img").attr('src',data.header['img']);
+                    var str='';
+                    str += '<div class="row"><div class="col col-10"></div><div class="col col-80"><center><img src="'+data.product['img']+'" class="image-product"></center></div><div class="col col-10"></div></div>'
+                    str += ' <div class="row"><div class="col col-10"></div><div class="col col-80 productdetail-text-header col-center text-center">'+data.product['nama']+'</div><div class="col col-10"></div></div>';
+                    str += '<div class="row"><div class="col col-10"></div><div class="col col-80 productdetail-text-desc">Referensi&emsp;: '+data.product['kode']+'<br />Jumlah&emsp;: '+data.product['jumlah']+'</div><div class="col col-10"></div></div>';
+                    str += '<div class="row"><div class="col col-10"></div><div class="col col-80 productdetail-text-info">'+data.product['desc']+'</div><div class="col col-10"></div></div>';
+                    $(".content").html(str);
+                  }
+                }
+            });
+      });
+    </script>
+</html>
+
+
+      
+     
+      
+      

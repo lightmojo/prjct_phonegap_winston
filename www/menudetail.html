@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <link href="css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
+    <!-- <script src="cordova.js"></script> -->
+  </head>
+  <body>
+    <div class="bar bar-header header">
+        <div class="col col-25 col-center text-center"><img src="image/winston_logo.png" class="img-responsive"></div>
+        <div class="col col-50 col-center text-center"></div>
+        <div class="col col-25 col-center text-center"><img src="image/ok.png" class="img-responsive"></div>
+    </div>
+    <a href="#" class="back">
+    <div class="bar bar-subheader subheader-title">
+        <div class="col col-10 subheader-row col-center"><img src="image/back_arrow.png" class="back-arrow"></div>
+        <div class="col col-10 subheader-row col-center"><img src="image/best_small_ic.png" class="subheader-img"></div>
+        <div class="col col-80 subheader-row col-center subheader-text">WINSTON PRODUCTS</div>
+    </div>
+    </a>
+    <div class="content has-subheader">
+      <center>
+      <button class="button">
+        <i class="icon ion-loading-c"></i> Loading...
+      </button>
+      </center>
+    </div>
+    <div class="bar bar-footer">
+      <div class="col col-25">
+        <center>
+        <a href="index.html"><img src="image/home_35x35.png" class="img-responsive" /></a>
+        </center>
+      </div>
+      <div class="col col-25">
+        <center>
+        <a href="disclaimer.html"><img src="image/disclaimer_35x35.png" class="img-responsive" /></a>
+        </center>
+      </div>
+      <div class="col col-25">
+        <center>
+        <a href="about_us.html"><img src="image/about_us_35x35.png" class="img-responsive" /></a>
+        </center>
+      </div>
+      <div class="col col-25">
+        <center>
+        <a href="contact_us.html"><img src="image/contact_35x35.png" class="img-responsive" /></a>
+        </center>
+      </div>
+    </div>
+  </body>
+
+
+    <script src="js/ionic.bundle.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      $(document).ready(function(){
+        var sub = getParameterByName('sub');
+        var menudetail = getParameterByName('menudetail');
+        $('.back').attr('href','http://kodokijo.net/projects/winston/api/submenudetail.php?sub='+sub);
+        $.ajax({
+                url: "api/submenudetail.php",
+                dataType: "json",
+                data: "submenu="+sub+"&menudetail="+menudetail,
+                method: "POST",
+                error:function(){
+                  alert("connection close");
+                },
+                success: function( data ) {
+                  if(data.header!=="")
+                  {
+                    $(".subheader-text").html(data.header['nama']);
+                    $(".subheader-img").attr('src',data.header['img']);
+                    var selection = '<div class="row"><div class="col selection-filter"><select id="filter"><option value="">-- Select Filter --</option>';
+                    for (var k in data.filter){
+                        if (data.filter.hasOwnProperty(k)) {
+                            selection += "<option value='" + k + "'>" + data.filter[k]+"</option>";
+                        }
+                    }
+                    selection += '</select></div></div>';
+                    var bar = 0;
+                    str = '<div class="row">';
+                    for(index=0;index<data.list.length;index++)
+                    {
+                      if(bar>1)
+                      {
+                        bar=bar-2;
+                        str += '</div><div class="row">';
+                      }
+                      str += '<div class="col col-50"><center><a href="productdetail.html?sub='+sub+'&menudetail='+menudetail+'&product='+data.list[index]['id']+'"><img src="'+data.list[index]['img']+'" class="img-responsive"><div class="row menudetail-row"><div class="col col-33 menudetail-text-left col-center">'+data.list[index]['kode']+'</div><div class="col col-66 menudetail-text-right col-center">'+data.list[index]['nama']+'</div></div></a></center></div>';
+                      bar++;
+                    }
+                    str += '</div>';
+                    str = selection+str;
+                    $(".content").html(str);
+                    // var str='<ul class="list">';
+                    // for(index=0;index<data.list.length;index++)
+                    // {
+                    //   str += '<li class="item item-list"><a href="menudetail.html?sub='+sub+'&menulist='+data.list[index]['id']+'"><div class="row"><div class="col col-25"><img src="'+data.list[index]['img']+'" class="img-responsive" /></div><div class="col col-50 col-center "><span class="list-text">'+data.list[index]['nama']+'</span></div><div class="col col-25 col-center"><img src="image/next_arrow.png" class="next-arrow"></div></div></a></li>';
+                    // }
+                    // str += '</ul>';
+                    // $(".content").html(str);
+                  }
+                }
+            });
+      });
+    </script>
+</html>
+
