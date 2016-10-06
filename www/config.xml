@@ -5,9 +5,9 @@
     <author email="admin@winston-best-hpl.com" href="http://winston-best-hpl.com/">Winston Team</author>
     <content src="index.html" />
     <icon src="icon.png" />
+    <access origin="*" />
     <allow-navigation href="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
+    <allow-intent href="*" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
 </widget>
