@@ -74,9 +74,9 @@
         var sub = getParameterByName('sub');
         var menudetail = getParameterByName('menudetail');
         var product = getParameterByName('product');
-        $('.back').attr('href','http://kodokijo.net/projects/winston/api/productdetail.php?sub='+sub+'&menudetail='+menudetail);
+        $('.back').attr('href','menudetail.html?sub='+sub+'&menudetail='+menudetail);
         $.ajax({
-                url: "api/productdetail.php",
+                url: "http://kodokijo.net/projects/winston/api/productdetail.php",
                 dataType: "json",
                 data: "submenu="+sub+"&menudetail="+menudetail+"&product="+product,
                 method: "POST",

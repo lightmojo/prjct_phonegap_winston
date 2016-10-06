@@ -72,9 +72,9 @@
       $(document).ready(function(){
         var sub = getParameterByName('sub');
         var menudetail = getParameterByName('menudetail');
-        $('.back').attr('href','http://kodokijo.net/projects/winston/api/submenudetail.php?sub='+sub);
+        $('.back').attr('href','submenu.html?sub='+sub);
         $.ajax({
-                url: "api/submenudetail.php",
+                url: "http://kodokijo.net/projects/winston/api/submenudetail.php",
                 dataType: "json",
                 data: "submenu="+sub+"&menudetail="+menudetail,
                 method: "POST",
