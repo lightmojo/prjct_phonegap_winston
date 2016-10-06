@@ -5,7 +5,9 @@
     <author email="admin@winston-best-hpl.com" href="http://winston-best-hpl.com/">Winston Team</author>
     <content src="index.html" />
     <icon src="icon.png" />
-    <access origin="*" />
+    <access origin="http://*" />
+    <access origin="https://*" />
+    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <preference name="DisallowOverscroll" value="true" />
